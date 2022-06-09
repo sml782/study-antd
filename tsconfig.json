@@ -16,6 +16,7 @@
     "jsx": "react",
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "experimentalDecorators": true,
     "skipLibCheck": true,
     "noEmitOnError": true,
     "baseUrl": ".",

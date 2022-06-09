@@ -185,6 +185,29 @@ importers:
     devDependencies:
       react: 18.1.0
 
+  packages/descriptions:
+    specifiers:
+      '@study/style': ^1.0.0
+      '@study/util': ^1.0.0
+      classname: ^0.0.0
+      eslint: ^8.16.0
+      eslint-config-ali: ^14.0.0
+      eslint-import-resolver-typescript: ^2.7.1
+      eslint-plugin-import: ^2.25.3
+      react: ^18.1.0
+      tslib: ^2.4.0
+    dependencies:
+      '@study/style': link:../style
+      '@study/util': link:../util
+      classname: 0.0.0
+      tslib: 2.4.0
+    devDependencies:
+      eslint: 8.16.0
+      eslint-config-ali: 14.0.0_eslint@8.16.0
+      eslint-import-resolver-typescript: 2.7.1_btspkuwbqkl4adpiufzbathtpi
+      eslint-plugin-import: 2.26.0_tcp7ow7er5vdjvxxazs2ysl7pi
+      react: 18.1.0
+
   packages/input:
     specifiers:
       '@study/style': ^1.0.0
@@ -252,7 +275,16 @@ importers:
       react: 18.1.0
 
   packages/style:
-    specifiers: {}
+    specifiers:
+      eslint: ^8.16.0
+      eslint-config-ali: ^14.0.0
+      eslint-import-resolver-typescript: ^2.7.1
+      eslint-plugin-import: ^2.25.3
+    devDependencies:
+      eslint: 8.16.0
+      eslint-config-ali: 14.0.0_eslint@8.16.0
+      eslint-import-resolver-typescript: 2.7.1_btspkuwbqkl4adpiufzbathtpi
+      eslint-plugin-import: 2.26.0_tcp7ow7er5vdjvxxazs2ysl7pi
 
   packages/switch:
     specifiers:
@@ -7047,6 +7079,14 @@ packages:
       object.entries: 1.1.5
     dev: true
 
+  /eslint-config-ali/14.0.0_eslint@8.16.0:
+    resolution: {integrity: sha512-F6tRRru2qJAsKGS7mPAWmOlHghcCloWpyQmEcYUVEgdoM2F/ujc18njrai+p6f58YqDUkFb/TwFMEbtQlbANLA==}
+    peerDependencies:
+      eslint: '>=6.8.0'
+    dependencies:
+      eslint: 8.16.0
+    dev: true
+
   /eslint-config-prettier/8.5.0_eslint@8.16.0:
     resolution: {integrity: sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==}
     hasBin: true
@@ -7061,6 +7101,50 @@ packages:
     dependencies:
       debug: 3.2.7
       resolve: 1.22.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /eslint-import-resolver-typescript/2.7.1_btspkuwbqkl4adpiufzbathtpi:
+    resolution: {integrity: sha512-00UbgGwV8bSgUv34igBDbTOtKhqoRMy9bFjNehT40bXg6585PNIct8HhXZ0SybqB9rWtXj9crcku8ndDn/gIqQ==}
+    engines: {node: '>=4'}
+    peerDependencies:
+      eslint: '*'
+      eslint-plugin-import: '*'
+    dependencies:
+      debug: 4.3.4
+      eslint: 8.16.0
+      eslint-plugin-import: 2.26.0_tcp7ow7er5vdjvxxazs2ysl7pi
+      glob: 7.2.3
+      is-glob: 4.0.3
+      resolve: 1.22.0
+      tsconfig-paths: 3.14.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /eslint-module-utils/2.7.3_gucnxrxxd7figzom2l7zkv3w64:
+    resolution: {integrity: sha512-088JEC7O3lDZM9xGe0RerkOMd0EjFl+Yvd1jPWIkMT5u3H9+HC34mWWPnqPrN13gieT9pBOO+Qt07Nb/6TresQ==}
+    engines: {node: '>=4'}
+    peerDependencies:
+      '@typescript-eslint/parser': '*'
+      eslint-import-resolver-node: '*'
+      eslint-import-resolver-typescript: '*'
+      eslint-import-resolver-webpack: '*'
+    peerDependenciesMeta:
+      '@typescript-eslint/parser':
+        optional: true
+      eslint-import-resolver-node:
+        optional: true
+      eslint-import-resolver-typescript:
+        optional: true
+      eslint-import-resolver-webpack:
+        optional: true
+    dependencies:
+      debug: 3.2.7
+      eslint-import-resolver-node: 0.3.6
+      eslint-import-resolver-typescript: 2.7.1_btspkuwbqkl4adpiufzbathtpi
+      find-up: 2.1.0
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -7119,6 +7203,36 @@ packages:
       eslint: 8.16.0
       eslint-import-resolver-node: 0.3.6
       eslint-module-utils: 2.7.3_zhgf6mw2wzy6dnrak3ta47vb3m
+      has: 1.0.3
+      is-core-module: 2.9.0
+      is-glob: 4.0.3
+      minimatch: 3.1.2
+      object.values: 1.1.5
+      resolve: 1.22.0
+      tsconfig-paths: 3.14.1
+    transitivePeerDependencies:
+      - eslint-import-resolver-typescript
+      - eslint-import-resolver-webpack
+      - supports-color
+    dev: true
+
+  /eslint-plugin-import/2.26.0_tcp7ow7er5vdjvxxazs2ysl7pi:
+    resolution: {integrity: sha512-hYfi3FXaM8WPLf4S1cikh/r4IxnO6zrhZbEGz2b660EJRbuxgpDS5gkCuYgGWg2xxh2rBuIr4Pvhve/7c31koA==}
+    engines: {node: '>=4'}
+    peerDependencies:
+      '@typescript-eslint/parser': '*'
+      eslint: ^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8
+    peerDependenciesMeta:
+      '@typescript-eslint/parser':
+        optional: true
+    dependencies:
+      array-includes: 3.1.5
+      array.prototype.flat: 1.3.0
+      debug: 2.6.9
+      doctrine: 2.1.0
+      eslint: 8.16.0
+      eslint-import-resolver-node: 0.3.6
+      eslint-module-utils: 2.7.3_gucnxrxxd7figzom2l7zkv3w64
       has: 1.0.3
       is-core-module: 2.9.0
       is-glob: 4.0.3
