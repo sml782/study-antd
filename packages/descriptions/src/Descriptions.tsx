@@ -45,7 +45,6 @@ export const Descriptions: React.FC<DescriptionsProps> & { Item: typeof Descript
   const mergedColumn = getColumns(column);
 
   const rows = getRows(children, mergedColumn);
-  console.log(2222, rows);
 
   return (
     <div
