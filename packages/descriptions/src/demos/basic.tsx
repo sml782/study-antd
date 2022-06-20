@@ -8,8 +8,13 @@ const Basic: ComponentStory<typeof Descriptions> = () => (
     title="这是个标题"
     extra={(<Button>这是额外的按钮</Button>)}
   >
-    <Descriptions.Item label="UserName">Zhou Maomao</Descriptions.Item>
-    <Descriptions.Item label="Telephone">1810000000</Descriptions.Item>
+    <Descriptions.Item
+      label="UserName"
+      span={3}
+    >Zhou Maomao
+    </Descriptions.Item>
+    <Descriptions.Item label="Telephone">1810000000
+    </Descriptions.Item>
     <Descriptions.Item label="Live">Hangzhou, Zhejiang</Descriptions.Item>
     <Descriptions.Item label="Remark">empty</Descriptions.Item>
     <Descriptions.Item label="Address">
