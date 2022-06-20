@@ -14,7 +14,7 @@ export interface DescriptionsProps {
   className?: string;
   style?: React.CSSProperties;
   bordered?: boolean;
-  // size?: 'middle' | 'small' | 'default';
+  size?: 'middle' | 'small' | 'default';
   children?: React.ReactNode;
   title?: React.ReactNode;
   extra?: React.ReactNode;
@@ -36,7 +36,7 @@ export const Descriptions: React.FC<DescriptionsProps> & { Item: typeof Descript
   children,
   className,
   style,
-  // size,
+  size,
   // labelStyle,
   // contentStyle,
 }) => {
@@ -49,7 +49,15 @@ export const Descriptions: React.FC<DescriptionsProps> & { Item: typeof Descript
 
   return (
     <div
-      className={classNames(prefixCls, className)}
+      className={classNames(
+        prefixCls,
+        {
+          [`${prefixCls}-${size}`]: size && size !== 'default',
+          [`${prefixCls}-bordered`]: !!bordered,
+          // [`${prefixCls}-rtl`]: direction === 'rtl',
+        },
+        className
+      )}
       style={style}
     >
       {(title || extra) && (

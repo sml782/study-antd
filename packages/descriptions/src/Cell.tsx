@@ -1,5 +1,15 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import classNames from 'classnames';
+
+/**
+ * 是否是空
+ *
+ * @param {unknown} val
+ * @return {*}  {boolean}
+ */
+function isEmpty(val: unknown): boolean {
+  return [null, undefined].includes(val);
+}
 
 export interface CellProps {
   itemPrefixCls: string;
@@ -37,6 +47,33 @@ const Cell: React.FC<CellProps> = (props) => {
     },
     [component],
   );
+
+  if (bordered) {
+    return (
+      <Component
+        className={classNames(
+          {
+            [`${itemPrefixCls}-item-label`]: !isEmpty(label),
+            [`${itemPrefixCls}-item-content`]: !isEmpty(content),
+          },
+          className
+        )}
+        style={style}
+        colSpan={span}
+      >
+        {!isEmpty(label) && (
+          <span style={labelStyle}>
+            {label}
+          </span>
+        )}
+        {!isEmpty(content) && (
+          <span style={contentStyle}>
+            {content}
+          </span>
+        )}
+      </Component>
+    );
+  }
 
   return (
     <Component

@@ -5,7 +5,7 @@ import { Descriptions } from '../Descriptions';
 
 const Bordered: ComponentStory<typeof Descriptions> = () => (
   <Descriptions
-    title="这是个标题"
+    title="这是个标题,不骗你"
     bordered
   >
     <Descriptions.Item label="Product">Cloud Database</Descriptions.Item>

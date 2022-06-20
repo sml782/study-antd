@@ -60,12 +60,12 @@ function renderCells(
           key={`label-${key || index}`}
           className={className}
           itemPrefixCls={itemPrefixCls}
-          span={span}
+          span={1}
           component={component[0]}
           colon={colon}
           bordered={bordered}
           label={label}
-          // labelStyle={}
+          style={{ ...style, ...labelStyle }}
         />
       ),
       (
@@ -73,10 +73,11 @@ function renderCells(
           key={`content-${key || index}`}
           className={className}
           itemPrefixCls={itemPrefixCls}
-          span={span}
+          span={span * 2 - 1}
           component={component[1]}
           bordered={bordered}
           content={children}
+          style={{ ...style, ...contentStyle }}
         />
       ),
     ];
@@ -110,7 +111,7 @@ const Row: React.FC<RowProps> = (props) => {
       className={`${prefixCls}-row`}
     >
       {renderCells(row, props, {
-        component: 'td',
+        component: bordered ? ['th', 'td'] : 'td',
         type: 'item',
         showLabel: true,
         showContent: true,
