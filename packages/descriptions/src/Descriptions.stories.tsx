@@ -1,5 +1,7 @@
 import type { ComponentMeta } from '@storybook/react';
 import { Descriptions } from '.';
+import './Descriptions.stories.less';
+import './style';
 
 export * from './demos';
 
