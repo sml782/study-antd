@@ -1,10 +1,11 @@
 import React from 'react';
 import toArray from 'rc-util/es/Children/toArray';
 import warning from 'antd/es/_util/warning';
+import { responsiveArray } from 'antd/es/_util/responsiveObserve';
 
 import { DEFAULT_COLUMN_MAP } from '../constants/index';
 
-import type { Breakpoint, ScreenMap } from 'antd/es/_util/responsiveObserve';
+import type { ScreenMap } from 'antd/es/_util/responsiveObserve';
 import type { DescriptionsProps } from '../Descriptions';
 
 /**
@@ -21,6 +22,13 @@ export function getColumns(column: DescriptionsProps['column'], screens?: Screen
   }
 
   // ! 响应式设置
+  if (typeof column === 'object' && screens) {
+    for (const breakpoint of responsiveArray) {
+      if (screens[breakpoint] && column[breakpoint] !== undefined) {
+        return column[breakpoint] || DEFAULT_COLUMN_MAP[breakpoint];
+      }
+    }
+  }
 
   return 3;
 }

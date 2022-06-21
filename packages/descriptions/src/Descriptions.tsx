@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useMemo, useState, useEffect } from 'react';
 import classNames from 'classnames';
 import ResponsiveObserve, { responsiveArray } from 'antd/es/_util/responsiveObserve';
 import { ConfigContext } from 'antd/es/config-provider';
@@ -43,6 +43,34 @@ export const Descriptions: React.FC<DescriptionsProps> & { Item: typeof Descript
   contentStyle,
 }) => {
   const { getPrefixCls, direction } = useContext(ConfigContext);
+  const [screens, setScreens] = useState<ScreenMap>({});
+
+  useEffect(
+    () => {
+      // 判断当前视口宽度在哪个断点内
+      // {
+      //   lg: false
+      //   md: true
+      //   sm: true
+      //   xl: false
+      //   xs: false
+      //   xxl: false
+      // }
+      const subscribeToken = ResponsiveObserve.subscribe((newScreens) => {
+        // 列数不为对象时无需重置断点对象
+        if (typeof column !== 'object') {
+          return;
+        }
+
+        setScreens(newScreens);
+      });
+
+      return () => {
+        ResponsiveObserve.unsubscribe(subscribeToken);
+      };
+    },
+    [],
+  );
 
   // 省流样式
   const contextValue = useMemo<DescriptionsContextProps>(
@@ -56,7 +84,7 @@ export const Descriptions: React.FC<DescriptionsProps> & { Item: typeof Descript
   const prefixCls = getPrefixCls('descriptions', customizePrefixCls);
 
   // 处理儿子们
-  const mergedColumn = getColumns(column);
+  const mergedColumn = getColumns(column, screens);
   const rows = getRows(children, mergedColumn);
 
   return (
