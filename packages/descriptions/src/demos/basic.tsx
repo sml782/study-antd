@@ -3,12 +3,8 @@ import { Button } from 'antd';
 import type { ComponentStory } from '@storybook/react';
 import { Descriptions } from '../Descriptions';
 
-const Basic: ComponentStory<typeof Descriptions> = () => (
-  <Descriptions
-    title="这是个标题"
-    extra={(<Button>这是额外的按钮</Button>)}
-    labelStyle={{ backgroundColor: 'red' }}
-  >
+const Basic: ComponentStory<typeof Descriptions> = (controlProps) => (
+  <Descriptions {...controlProps}>
     <Descriptions.Item
       label="UserName"
       span={3}
@@ -26,5 +22,10 @@ const Basic: ComponentStory<typeof Descriptions> = () => (
 );
 
 Basic.storyName = '基本';
+Basic.args = {
+  labelStyle: { backgroundColor: 'red' },
+  title: '这是个标题',
+  extra: (<Button>这是额外的按钮</Button>),
+};
 
 export default Basic;

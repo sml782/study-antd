@@ -3,11 +3,8 @@ import { Badge } from 'antd';
 import type { ComponentStory } from '@storybook/react';
 import { Descriptions } from '../Descriptions';
 
-const Bordered: ComponentStory<typeof Descriptions> = () => (
-  <Descriptions
-    title="这是个标题,不骗你"
-    bordered
-  >
+const Bordered: ComponentStory<typeof Descriptions> = (controlProps) => (
+  <Descriptions {...controlProps}>
     <Descriptions.Item label="Product">Cloud Database</Descriptions.Item>
     <Descriptions.Item label="Billing Mode">Prepaid</Descriptions.Item>
     <Descriptions.Item label="Automatic Renewal">YES</Descriptions.Item>
@@ -47,5 +44,9 @@ const Bordered: ComponentStory<typeof Descriptions> = () => (
 );
 
 Bordered.storyName = '带边框的';
+Bordered.args = {
+  title: '这是个标题,不骗你',
+  bordered: true,
+};
 
 export default Bordered;

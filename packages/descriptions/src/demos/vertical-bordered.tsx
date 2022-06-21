@@ -3,12 +3,8 @@ import { Badge } from 'antd';
 import type { ComponentStory } from '@storybook/react';
 import { Descriptions } from '../Descriptions';
 
-const VerticalBordered: ComponentStory<typeof Descriptions> = () => (
-  <Descriptions
-    title="User Info"
-    layout="vertical"
-    bordered
-  >
+const VerticalBordered: ComponentStory<typeof Descriptions> = (controlProps) => (
+  <Descriptions {...controlProps}>
     <Descriptions.Item label="Product">Cloud Database</Descriptions.Item>
     <Descriptions.Item label="Billing Mode">Prepaid</Descriptions.Item>
     <Descriptions.Item label="Automatic Renewal">YES</Descriptions.Item>
@@ -48,5 +44,10 @@ const VerticalBordered: ComponentStory<typeof Descriptions> = () => (
 );
 
 VerticalBordered.storyName = '垂直带边框的';
+VerticalBordered.args = {
+  title: 'User Info',
+  layout: 'vertical',
+  bordered: true,
+};
 
 export default VerticalBordered;

@@ -1,35 +1,16 @@
-import React, { useState } from 'react';
-import { Button, Radio } from 'antd';
-import type { RadioChangeEvent } from 'antd';
+import React from 'react';
+import { Button, Alert } from 'antd';
 import type { ComponentStory } from '@storybook/react';
 import { Descriptions } from '../Descriptions';
 
-const Size: ComponentStory<typeof Descriptions> = () => {
-  const [size, setSize] = useState<'default' | 'middle' | 'small'>('default');
-
-  const onChange = (e: RadioChangeEvent) => {
-    console.log('size checked', e.target.value);
-    setSize(e.target.value);
-  };
-
+const Size: ComponentStory<typeof Descriptions> = (controlProps) => {
   return (
     <div>
-      <Radio.Group
-        onChange={onChange}
-        value={size}
-      >
-        <Radio value="default">default</Radio>
-        <Radio value="middle">middle</Radio>
-        <Radio value="small">small</Radio>
-      </Radio.Group>
-      <br />
-      <br />
-      <Descriptions
-        bordered
-        title="Custom Size"
-        size={size}
-        extra={<Button type="primary">Edit</Button>}
-      >
+      <Alert
+        message="在下方 Control 区域控制"
+        type="warning"
+      />
+      <Descriptions {...controlProps}>
         <Descriptions.Item label="Product">Cloud Database</Descriptions.Item>
         <Descriptions.Item label="Billing">Prepaid</Descriptions.Item>
         <Descriptions.Item label="time">18:00:00</Descriptions.Item>
@@ -52,11 +33,7 @@ const Size: ComponentStory<typeof Descriptions> = () => {
       </Descriptions>
       <br />
       <br />
-      <Descriptions
-        title="Custom Size"
-        size={size}
-        extra={<Button type="primary">Edit</Button>}
-      >
+      <Descriptions {...controlProps}>
         <Descriptions.Item label="Product">Cloud Database</Descriptions.Item>
         <Descriptions.Item label="Billing">Prepaid</Descriptions.Item>
         <Descriptions.Item label="time">18:00:00</Descriptions.Item>
@@ -69,5 +46,19 @@ const Size: ComponentStory<typeof Descriptions> = () => {
 };
 
 Size.storyName = '自定义尺寸';
+Size.args = {
+  title: 'Custom Size',
+  size: 'default',
+  bordered: true,
+  layout: 'horizontal',
+  extra: (<Button type="primary">Edit</Button>),
+};
+// Size.argTypes = {
+//   size: {
+//     options: ['default', 'middle', 'small'],
+//     control: { type: 'select' },
+//   },
+// };
+
 
 export default Size;

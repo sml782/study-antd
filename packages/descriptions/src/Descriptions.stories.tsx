@@ -8,8 +8,16 @@ export * from './demos';
 const Stories: ComponentMeta<typeof Descriptions> = {
   title: 'Descriptions',
   component: Descriptions,
+  args: {
+    size: 'default',
+    bordered: false,
+    layout: 'horizontal',
+  },
   // argTypes: {
-  //   backgroundColor: { control: 'color' },
+  //   size: {
+  //     options: ['default', 'middle', 'small'],
+  //     control: { type: 'select' },
+  //   },
   // },
 };
 

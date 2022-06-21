@@ -2,11 +2,8 @@ import React from 'react';
 import type { ComponentStory } from '@storybook/react';
 import { Descriptions } from '../Descriptions';
 
-const Vertical: ComponentStory<typeof Descriptions> = () => (
-  <Descriptions
-    title="User Info"
-    layout="vertical"
-  >
+const Vertical: ComponentStory<typeof Descriptions> = (controlProps) => (
+  <Descriptions {...controlProps}>
     <Descriptions.Item label="UserName">Zhou Maomao</Descriptions.Item>
     <Descriptions.Item label="Telephone">1810000000</Descriptions.Item>
     <Descriptions.Item label="Live">Hangzhou, Zhejiang</Descriptions.Item>
@@ -21,5 +18,9 @@ const Vertical: ComponentStory<typeof Descriptions> = () => (
 );
 
 Vertical.storyName = '垂直';
+Vertical.args = {
+  title: 'User Info',
+  layout: 'vertical',
+};
 
 export default Vertical;

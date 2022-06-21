@@ -36,11 +36,8 @@ const columns = [
   },
 ];
 
-const Text: ComponentStory<typeof Descriptions> = () => (
-  <Descriptions
-    title="这是个标题"
-    column={2}
-  >
+const Text: ComponentStory<typeof Descriptions> = (controlProps) => (
+  <Descriptions {...controlProps}>
     <Descriptions.Item label="Product">Cloud Database</Descriptions.Item>
     <Descriptions.Item label={<div style={{ display: 'flex' }}>Billing Mode</div>}>
       Prepaid
@@ -91,5 +88,9 @@ const Text: ComponentStory<typeof Descriptions> = () => (
 );
 
 Text.storyName = '复杂文本的情况';
+Text.args = {
+  title: '这是个标题',
+  column: 2,
+};
 
 export default Text;

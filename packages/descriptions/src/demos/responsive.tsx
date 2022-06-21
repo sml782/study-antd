@@ -2,12 +2,8 @@ import React from 'react';
 import type { ComponentStory } from '@storybook/react';
 import { Descriptions } from '../Descriptions';
 
-const Responsive: ComponentStory<typeof Descriptions> = () => (
-  <Descriptions
-    title="Responsive Descriptions"
-    bordered
-    column={{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }}
-  >
+const Responsive: ComponentStory<typeof Descriptions> = (controlProps) => (
+  <Descriptions {...controlProps}>
     <Descriptions.Item label="Product">Cloud Database</Descriptions.Item>
     <Descriptions.Item label="Billing">Prepaid</Descriptions.Item>
     <Descriptions.Item label="time">18:00:00</Descriptions.Item>
@@ -31,5 +27,10 @@ const Responsive: ComponentStory<typeof Descriptions> = () => (
 );
 
 Responsive.storyName = '响应式';
+Responsive.args = {
+  title: 'Responsive Descriptions',
+  bordered: true,
+  column: { xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 },
+};
 
 export default Responsive;
