@@ -1,13 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import classNames from 'classnames';
 import ResponsiveObserve, { responsiveArray } from 'antd/es/_util/responsiveObserve';
 import { ConfigContext } from 'antd/es/config-provider';
+import { DescriptionsContext } from './contexts';
 import Row from './Row';
 import DescriptionsItem from './Item';
 import { DEFAULT_COLUMN_MAP } from './constants/index';
 import { getColumns, getRows } from './utils/index';
 
 import type { Breakpoint, ScreenMap } from 'antd/es/_util/responsiveObserve';
+import type { DescriptionsContextProps } from './contexts';
 
 export interface DescriptionsProps {
   prefixCls?: string;
@@ -21,8 +23,8 @@ export interface DescriptionsProps {
   column?: number | Partial<Record<Breakpoint, number>>;
   layout?: 'horizontal' | 'vertical';
   colon?: boolean;
-  // labelStyle?: React.CSSProperties;
-  // contentStyle?: React.CSSProperties;
+  labelStyle?: React.CSSProperties;
+  contentStyle?: React.CSSProperties;
 }
 
 export const Descriptions: React.FC<DescriptionsProps> & { Item: typeof DescriptionsItem } = ({
@@ -37,55 +39,68 @@ export const Descriptions: React.FC<DescriptionsProps> & { Item: typeof Descript
   className,
   style,
   size,
-  // labelStyle,
-  // contentStyle,
+  labelStyle,
+  contentStyle,
 }) => {
-  const { getPrefixCls } = useContext(ConfigContext);
-  const prefixCls = getPrefixCls('descriptions', customizePrefixCls);
-  const mergedColumn = getColumns(column);
+  const { getPrefixCls, direction } = useContext(ConfigContext);
 
+  // 省流样式
+  const contextValue = useMemo<DescriptionsContextProps>(
+    () => {
+      return { labelStyle, contentStyle };
+    },
+    [labelStyle, contentStyle],
+  );
+
+  // 前缀不可缺
+  const prefixCls = getPrefixCls('descriptions', customizePrefixCls);
+
+  // 处理儿子们
+  const mergedColumn = getColumns(column);
   const rows = getRows(children, mergedColumn);
 
   return (
-    <div
-      className={classNames(
-        prefixCls,
-        {
-          [`${prefixCls}-${size}`]: size && size !== 'default',
-          [`${prefixCls}-bordered`]: !!bordered,
-          // [`${prefixCls}-rtl`]: direction === 'rtl',
-        },
-        className
-      )}
-      style={style}
-    >
-      {(title || extra) && (
-        <div className={`${prefixCls}-header`}>
-          {title && <div className={`${prefixCls}-title`}>{title}</div>}
-          {extra && <div className={`${prefixCls}-extra`}>{extra}</div>}
+    <DescriptionsContext.Provider value={contextValue}>
+      <div
+        className={classNames(
+          prefixCls,
+          {
+            [`${prefixCls}-${size}`]: size && size !== 'default',
+            [`${prefixCls}-bordered`]: !!bordered,
+            [`${prefixCls}-rtl`]: direction === 'rtl',
+          },
+          className
+        )}
+        style={style}
+      >
+        {(title || extra) && (
+          <div className={`${prefixCls}-header`}>
+            {title && <div className={`${prefixCls}-title`}>{title}</div>}
+            {extra && <div className={`${prefixCls}-extra`}>{extra}</div>}
+          </div>
+        )}
+        <div className={`${prefixCls}-view`}>
+          <table>
+            <tbody>
+              {rows.map((item, index) => {
+                return (
+                  <Row
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={index}
+                    index={index}
+                    prefixCls={prefixCls}
+                    row={item}
+                    bordered={bordered}
+                    vertical={layout === 'vertical'}
+                    colon={colon}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
         </div>
-      )}
-      <div className={`${prefixCls}-view`}>
-        <table>
-          <tbody>
-            {rows.map((item, index) => {
-              return (
-                <Row
-                  // eslint-disable-next-line react/no-array-index-key
-                  key={index}
-                  index={index}
-                  prefixCls={prefixCls}
-                  row={item}
-                  bordered={bordered}
-                  vertical={layout === 'vertical'}
-                  colon={colon}
-                />
-              );
-            })}
-          </tbody>
-        </table>
       </div>
-    </div>
+    </DescriptionsContext.Provider>
   );
 };
 

@@ -7,10 +7,12 @@ const Basic: ComponentStory<typeof Descriptions> = () => (
   <Descriptions
     title="这是个标题"
     extra={(<Button>这是额外的按钮</Button>)}
+    labelStyle={{ backgroundColor: 'red' }}
   >
     <Descriptions.Item
       label="UserName"
       span={3}
+      labelStyle={{ backgroundColor: 'yellow' }}
     >Zhou Maomao
     </Descriptions.Item>
     <Descriptions.Item label="Telephone">1810000000

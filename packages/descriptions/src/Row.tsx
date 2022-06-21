@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Cell from './Cell';
+import { DescriptionsContext } from './contexts';
+
 import type { DescriptionsItemProps } from './Item';
 import type { CellProps } from './Cell';
+import type { DescriptionsContextProps } from './contexts';
 
 interface CellConfig {
   component: CellProps['component'] | [CellProps['component'], CellProps['component']];
@@ -18,7 +21,9 @@ function renderCells(
     type,
     showLabel,
     showContent,
-  }: CellConfig,
+    labelStyle: rootLabelStyle,
+    contentStyle: rootContentStyle,
+  }: CellConfig & DescriptionsContextProps,
 ): React.ReactNode {
   return items.map((item, index) => {
     const {
@@ -48,8 +53,8 @@ function renderCells(
           label={showLabel ? label : null}
           content={showContent ? children : null}
           style={style}
-          labelStyle={labelStyle}
-          contentStyle={contentStyle}
+          labelStyle={{ ...rootLabelStyle, ...labelStyle }}
+          contentStyle={{ ...rootContentStyle, ...contentStyle }}
         />
       );
     }
@@ -65,7 +70,7 @@ function renderCells(
           colon={colon}
           bordered={bordered}
           label={label}
-          style={{ ...style, ...labelStyle }}
+          style={{ ...style, ...rootLabelStyle, ...labelStyle }}
         />
       ),
       (
@@ -77,7 +82,7 @@ function renderCells(
           component={component[1]}
           bordered={bordered}
           content={children}
-          style={{ ...style, ...contentStyle }}
+          style={{ ...style, ...rootContentStyle, ...contentStyle }}
         />
       ),
     ];
@@ -105,6 +110,8 @@ const Row: React.FC<RowProps> = (props) => {
     children,
   } = props;
 
+  const rootStyle = useContext(DescriptionsContext);
+
   return (
     <tr
       key={index}
@@ -115,6 +122,7 @@ const Row: React.FC<RowProps> = (props) => {
         type: 'item',
         showLabel: true,
         showContent: true,
+        ...rootStyle,
       })}
     </tr>
   );
