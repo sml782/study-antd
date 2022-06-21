@@ -275,16 +275,7 @@ importers:
       react: 18.1.0
 
   packages/style:
-    specifiers:
-      eslint: ^8.16.0
-      eslint-config-ali: ^14.0.0
-      eslint-import-resolver-typescript: ^2.7.1
-      eslint-plugin-import: ^2.25.3
-    devDependencies:
-      eslint: 8.16.0
-      eslint-config-ali: 14.0.0_eslint@8.16.0
-      eslint-import-resolver-typescript: 2.7.1_btspkuwbqkl4adpiufzbathtpi
-      eslint-plugin-import: 2.26.0_tcp7ow7er5vdjvxxazs2ysl7pi
+    specifiers: {}
 
   packages/switch:
     specifiers:
