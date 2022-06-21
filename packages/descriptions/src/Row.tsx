@@ -112,6 +112,35 @@ const Row: React.FC<RowProps> = (props) => {
 
   const rootStyle = useContext(DescriptionsContext);
 
+  if (vertical) {
+    return (
+      <>
+        <tr
+          key={`label-${index}`}
+          className={`${prefixCls}-row`}
+        >
+          {renderCells(row, props, {
+            component: 'th',
+            type: 'label',
+            showLabel: true,
+            ...rootStyle,
+          })}
+        </tr>
+        <tr
+          key={`content-${index}`}
+          className={`${prefixCls}-row`}
+        >
+          {renderCells(row, props, {
+            component: 'td',
+            type: 'content',
+            showContent: true,
+            ...rootStyle,
+          })}
+        </tr>
+      </>
+    );
+  }
+
   return (
     <tr
       key={index}
