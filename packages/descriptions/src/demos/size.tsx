@@ -10,6 +10,7 @@ const Size: ComponentStory<typeof Descriptions> = (controlProps) => {
         message="在下方 Control 区域控制"
         type="warning"
       />
+      <br />
       <Descriptions {...controlProps}>
         <Descriptions.Item label="Product">Cloud Database</Descriptions.Item>
         <Descriptions.Item label="Billing">Prepaid</Descriptions.Item>
