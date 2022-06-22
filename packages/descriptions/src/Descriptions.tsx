@@ -1,6 +1,6 @@
 import React, { useContext, useMemo, useState, useEffect } from 'react';
 import classNames from 'classnames';
-import ResponsiveObserve, { responsiveArray } from 'antd/es/_util/responsiveObserve';
+import ResponsiveObserve from '@study/util/esm/responsiveObserve';
 import { ConfigContext } from 'antd/es/config-provider';
 import { DescriptionsContext } from './contexts';
 import Row from './Row';
@@ -8,7 +8,7 @@ import DescriptionsItem from './Item';
 import { DEFAULT_COLUMN_MAP } from './constants/index';
 import { getColumns, getRows } from './utils/index';
 
-import type { Breakpoint, ScreenMap } from 'antd/es/_util/responsiveObserve';
+import type { Breakpoint, ScreenMap } from '@study/util/esm/responsiveObserve';
 import type { DescriptionsContextProps } from './contexts';
 
 export interface DescriptionsProps {

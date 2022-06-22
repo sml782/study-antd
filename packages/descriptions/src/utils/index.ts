@@ -1,11 +1,11 @@
 import React from 'react';
 import toArray from 'rc-util/es/Children/toArray';
 import warning from 'antd/es/_util/warning';
-import { responsiveArray } from 'antd/es/_util/responsiveObserve';
+import { responsiveArray } from '@study/util/esm/responsiveObserve';
 
 import { DEFAULT_COLUMN_MAP } from '../constants/index';
 
-import type { ScreenMap } from 'antd/es/_util/responsiveObserve';
+import type { ScreenMap } from '@study/util/esm/responsiveObserve';
 import type { DescriptionsProps } from '../Descriptions';
 
 /**

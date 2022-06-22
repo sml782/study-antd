@@ -1,4 +1,4 @@
-import type { Breakpoint } from 'antd/es/_util/responsiveObserve';
+import type { Breakpoint } from '@study/util/esm/responsiveObserve';
 
 export const DEFAULT_COLUMN_MAP: Record<Breakpoint, number> = {
   xxl: 3,
